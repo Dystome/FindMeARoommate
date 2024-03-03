@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using PracticalProject.DataLayer.Entities;
+using PracticalProject.DataLayer.Repositories;
 namespace PracticalProject.Data.FindMeARoommateDb;
 
 public class FindMeARoommateDb : DbContext
