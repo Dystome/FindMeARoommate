@@ -28,6 +28,8 @@ namespace PracticalProject.DataLayer.Entities
         public string Email { get; set; }
         [Required]
         [MaxLength(200)]
+
+        public DateTime Birthday { get; set; }  
         public string Password { get; set; }
         public bool isAdmin { get; set; }
     }
