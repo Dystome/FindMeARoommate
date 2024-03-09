@@ -1,15 +1,12 @@
 ﻿using PracticalProject.Data.FindMeARoommateDb;
 using PracticalProject.DataLayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PracticalProject.DataLayer.Repositories;
 
 namespace FIndMeARoomatate.DataLayer.Repositories
 {
     public class AnnouncementRepository
     {
+        //Create Announcement
         public void AddAnnouncement(Announcement student)
         { // DbContext Add Method
             var dbContext = new FindMeARoommateDb();
@@ -17,33 +14,22 @@ namespace FIndMeARoomatate.DataLayer.Repositories
             dbContext.SaveChanges();
         }
 
-        // Get All Student
-        public List<Student> GetAllAnnouncement(Student student)
+        public List<Announcement> GetAllAnnouncement()
         {
-            if(student.isAdmin == true) 
-            {
-                var context = new FindMeARoommateDb();
-                var students = context.Students.ToList();
-
-                return students;
-            }
-            else
-            {
-                Console.WriteLine("You are not an admin!");
-                throw new Exception("No admin privileges");
-            }
-            
+            var context = new FindMeARoommateDb();
+            var announcement = context.Announcements.ToList();
+            return announcement;
         }
-        //Update
+
         //Remove
-        public void DeleteStudent(Student student)
+        public void DeleteAnnouncement(Announcement announcement)
         {
             try
             {
                 var dbContext = new FindMeARoommateDb();
-                dbContext.Students.Remove(student);
+                dbContext.Announcements.Remove(announcement);
                 dbContext.SaveChanges();
-                Console.WriteLine("Student removed");
+                Console.WriteLine("Announcement removed");
             }
             catch (Exception ex)
             {
@@ -51,12 +37,14 @@ namespace FIndMeARoomatate.DataLayer.Repositories
                 throw ex;
             }
         }
-        public void UpdateStudent(Student student)
+
+        //Update
+        public void UpdateStudent(Announcement announcement)
         {
             try
             {
                 var dbContext = new FindMeARoommateDb();
-                dbContext.Students.Update(student);
+                dbContext.Announcements.Update(announcement);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)

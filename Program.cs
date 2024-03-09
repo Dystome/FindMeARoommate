@@ -2,6 +2,7 @@
 using PracticalProject.Data.FindMeARoommateDb;
 using PracticalProject.DataLayer.Entities;
 using PracticalProject.DataLayer.Repositories;
+using System.Timers;
 
 
 Console.WriteLine("--------------------------------------------------");
@@ -10,6 +11,8 @@ Console.WriteLine("1 - Register");
 Console.WriteLine("2 - Login");
 Console.WriteLine("3 - Get All students");
 Console.WriteLine("4 - Get My Profile");
+Console.WriteLine("5 - Make a new Announcement");
+Console.WriteLine("6 - Get all my announcements");
 int choice = int.Parse(Console.ReadLine());
 
 switch (choice)
@@ -58,6 +61,34 @@ switch (choice)
 
             break;
 
+        }
+
+    case 5:
+        {
+            //Make a new announcement
+            Console.WriteLine("Enter email:");
+            var email = Console.ReadLine();
+
+            var announcementService = new AnnouncementService();
+            announcementService.MakeAnnouncement(email);
+
+            break;
+        }
+
+    case 6:
+        {
+            //See all my announcements
+            Console.WriteLine("Enter email:");
+            var email = Console.ReadLine();
+            var announcementService = new AnnouncementService();
+            var announcements = announcementService.GetMyAnnouncement(email);
+            
+            foreach(var el in announcements)
+            {
+                Console.WriteLine(el.Title + "\n" + el.Description);
+            }
+
+            break;
         }
 }
 
