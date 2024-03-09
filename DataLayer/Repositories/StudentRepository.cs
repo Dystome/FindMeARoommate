@@ -42,10 +42,6 @@ namespace PracticalProject.DataLayer.Repositories
         {
             var context = new FindMeARoommateDb();
             var students = context.Students.ToList();
-            foreach (var s in students)
-            {
-                Console.WriteLine(s.Name + "         " + s.Surname + "        " + s.Address);
-            }
             return students;
         }
 

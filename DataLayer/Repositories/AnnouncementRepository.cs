@@ -18,28 +18,21 @@ namespace FIndMeARoomatate.DataLayer.Repositories
         }
 
         // Get All Student
-        public List<Student> GetAllStudent()
+        public List<Student> GetAllAnnouncement(Student student)
         {
-            var context = new FindMeARoommateDb();
-            var students = context.Students.ToList();
+            if(student.isAdmin == true) 
+            {
+                var context = new FindMeARoommateDb();
+                var students = context.Students.ToList();
 
-            return students;
-        }
-        // Get By ID
-        public Student FindByID(int id)
-        {
-            try
-            {
-                var dbContext = new FindMeARoommateDb();
-                var student = dbContext.Students.Where(p => p.Id == id)
-                    .FirstOrDefault();
-                return student;
+                return students;
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.Message);
-                throw ex;
+                Console.WriteLine("You are not an admin!");
+                throw new Exception("No admin privileges");
             }
+            
         }
         //Update
         //Remove
@@ -72,5 +65,6 @@ namespace FIndMeARoomatate.DataLayer.Repositories
                 throw ex;
             }
         }
+
     }
 }

@@ -7,7 +7,9 @@ using PracticalProject.DataLayer.Repositories;
 Console.WriteLine("--------------------------------------------------");
 Console.WriteLine("Menu");
 Console.WriteLine("1 - Register");
-Console.WriteLine("2 - Get All students");
+Console.WriteLine("2 - Login");
+Console.WriteLine("3 - Get All students");
+Console.WriteLine("4 - Get My Profile");
 int choice = int.Parse(Console.ReadLine());
 
 switch (choice)
@@ -22,12 +24,40 @@ switch (choice)
         }
     case 2:
         {
+            //Login
+            Console.WriteLine("Enter Email");
+            var Email = Console.ReadLine();
+
+            Console.WriteLine("Enter Password");
+            var Password = Console.ReadLine();
+
+            var studentService = new StudentService();
+            studentService.LoginStudent(Email, Password);
+            break;
+        }
+    case 3:
+        {
             //Print all students
             var studentService = new StudentService();
-            var students = new List<Student>();
-            students = studentService.GetStudents();
+            var student = studentService.GetStudents();
+            foreach(var el in student)
+            {
+                Console.WriteLine(el.Name + " " + el.Surname + " " + el.Address );
+            }
+            break;
+
+        }
+    case 4: 
+        {
+            //Get my profile
+            Console.WriteLine("Enter email:");
+            var email = Console.ReadLine();
+
+            var studentService = new StudentService();
+            studentService.GetMyProfile(email);
 
             break;
+
         }
 }
 
