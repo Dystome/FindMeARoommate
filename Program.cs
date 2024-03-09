@@ -27,11 +27,6 @@ switch (choice)
             var students = new List<Student>();
             students = studentService.GetStudents();
 
-            foreach (var s in students)
-            {
-                Console.WriteLine(s.Name + " " + s.Surname + " " + s.Address + " " + s.Gender);
-            }
-
             break;
         }
 }
