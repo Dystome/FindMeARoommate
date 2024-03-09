@@ -13,14 +13,14 @@ namespace PracticalProject.BusinessLayer
         #region Business Layer
         //Student Business Logic
         //Get All students
-        List<Student> GetStudents()
+        public List<Student> GetStudents()
         {
             var studentRepo = new StudentRepository();
             var students = studentRepo.GetAllStudent();
             return students;
         }
         //Register Student
-        void RegisterStudent()
+        public void RegisterStudent()
         {
             Console.WriteLine("Register");
             var student = new Student();

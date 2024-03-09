@@ -1,11 +1,39 @@
-﻿using PracticalProject.Data.FindMeARoommateDb;
+﻿using PracticalProject.BusinessLayer;
+using PracticalProject.Data.FindMeARoommateDb;
 using PracticalProject.DataLayer.Entities;
 using PracticalProject.DataLayer.Repositories;
 
 
-var rep = new StudentRepository();
-var users = rep.GetAll();
-foreach (var user in users)
+Console.WriteLine("--------------------------------------------------");
+Console.WriteLine("Menu");
+Console.WriteLine("1 - Register");
+Console.WriteLine("2 - Get All students");
+int choice = int.Parse(Console.ReadLine());
+
+switch (choice)
 {
-    Console.WriteLine(user.Name + " " + user.Surname + " " + user.Address);
+    case 1:
+        {
+            //Register
+            var studentService = new StudentService();
+            studentService.RegisterStudent();
+
+            break;
+        }
+    case 2:
+        {
+            //Print all students
+            var studentService = new StudentService();
+            var students = new List<Student>();
+            students = studentService.GetStudents();
+
+            foreach (var s in students)
+            {
+                Console.WriteLine(s.Name + " " + s.Surname + " " + s.Address + " " + s.Gender);
+            }
+
+            break;
+        }
 }
+
+Console.WriteLine("--------------------------------------------------");
