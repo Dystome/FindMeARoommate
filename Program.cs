@@ -1,4 +1,5 @@
-﻿using PracticalProject.BusinessLayer;
+﻿using Microsoft.Extensions.Hosting.Internal;
+using PracticalProject.BusinessLayer;
 using PracticalProject.Data.FindMeARoommateDb;
 using PracticalProject.DataLayer.Entities;
 using PracticalProject.DataLayer.Repositories;
@@ -13,6 +14,7 @@ Console.WriteLine("3 - Get All students");
 Console.WriteLine("4 - Get My Profile");
 Console.WriteLine("5 - Make a new Announcement");
 Console.WriteLine("6 - Get all my announcements");
+Console.WriteLine("7 - Make an Application");
 int choice = int.Parse(Console.ReadLine());
 
 switch (choice)
@@ -50,7 +52,7 @@ switch (choice)
             break;
 
         }
-    case 4: 
+    case 4:
         {
             //Get my profile
             Console.WriteLine("Enter email:");
@@ -60,7 +62,7 @@ switch (choice)
             Console.WriteLine("--------------------------------------------------\nMy Profile:");
             studentService.GetMyProfile(email);
 
-            
+
             Console.WriteLine("--------------------------------------------------\nMy Announcements:");
 
             var announcementService = new AnnouncementService();
@@ -94,11 +96,25 @@ switch (choice)
             var email = Console.ReadLine();
             var announcementService = new AnnouncementService();
             var announcements = announcementService.GetMyAnnouncement(email);
-            
+
             foreach(var el in announcements)
             {
                 Console.WriteLine(el.Title + "\n" + el.Description);
             }
+
+            break;
+        }
+    case 7:
+        {
+            //Create a new application
+            Console.WriteLine("Enter student email:");
+            string email = Console.ReadLine();
+
+            Console.WriteLine("Enter announcement title:");
+            string title = Console.ReadLine();
+            
+            var applicationService = new ApplicationService();
+            applicationService.MakeApplication(email, title);
 
             break;
         }

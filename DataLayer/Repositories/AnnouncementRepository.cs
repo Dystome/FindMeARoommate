@@ -38,6 +38,23 @@ namespace FIndMeARoomatate.DataLayer.Repositories
             }
         }
 
+        public Announcement FindByID(int id)
+        {
+            try
+            {
+                var dbContext = new FindMeARoommateDb();
+                var announcement = dbContext.Announcements
+                    .Where(p => p.ID == id)
+                    .FirstOrDefault();
+                return announcement;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
+
         //Update
         public void UpdateStudent(Announcement announcement)
         {
