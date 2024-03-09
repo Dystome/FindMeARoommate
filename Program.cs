@@ -57,7 +57,19 @@ switch (choice)
             var email = Console.ReadLine();
 
             var studentService = new StudentService();
+            Console.WriteLine("--------------------------------------------------\nMy Profile:");
             studentService.GetMyProfile(email);
+
+            
+            Console.WriteLine("--------------------------------------------------\nMy Announcements:");
+
+            var announcementService = new AnnouncementService();
+            var announcements = announcementService.GetMyAnnouncement(email);
+
+            foreach (var el in announcements)
+            {
+                Console.WriteLine("\n" + "Title: " + el.Title + "\n" + "Description: " + el.Description);
+            }
 
             break;
 
@@ -78,7 +90,7 @@ switch (choice)
     case 6:
         {
             //See all my announcements
-            Console.WriteLine("Enter email:");
+            Console.WriteLine("Enter student email:");
             var email = Console.ReadLine();
             var announcementService = new AnnouncementService();
             var announcements = announcementService.GetMyAnnouncement(email);
