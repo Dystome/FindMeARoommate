@@ -16,6 +16,7 @@ namespace PracticalProject.DataLayer.Entities
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime PublishedDate { get; set; }
+        
         [ForeignKey("AnnouncementOwner")]
         [Required]
         public int StudentID { get; set; }

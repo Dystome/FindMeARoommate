@@ -29,7 +29,7 @@ namespace PracticalProject.DataLayer.Entities
         [Required]
         [MaxLength(200)]
 
-        public DateTime Birthday { get; set; }
+        public DateTime Birthday { get; set; }  
         public string Password { get; set; }
         public bool isAdmin { get; set; }
     }
